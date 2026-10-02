@@ -1,0 +1,38 @@
+{
+  "name": "dsh-github-tk",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Direct GitHub repository tools and cloud projects for DeepSeek Harness",
+  "license": "MIT",
+  "exports": {
+    ".": "./dist/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml"
+  },
+  "files": ["dist", "README.md", "cordis.patch.yml"],
+  "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@deepseek-ai/schemastery": "^3.18.4"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/dsh-credentials": "*",
+    "@deepseek-ai/dsh-commands": "*",
+    "@deepseek-ai/dsh-agent": "*"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/dsh-credentials": "*",
+    "@deepseek-ai/dsh-commands": "*",
+    "@deepseek-ai/dsh-agent": "*",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.3"
+  },
+  "keywords": ["dsh-plugin", "github", "cloud-workspace"]
+}
