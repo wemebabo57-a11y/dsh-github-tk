@@ -1,5 +1,4 @@
 # dsh-github-tk
-
 一个 DeepSeek Harness 插件，让会话直接读写 GitHub 仓库。仓库内容经 GitHub REST API 读取和提交；插件自身只在 DSH home 保存会话与仓库的关联信息，不克隆仓库，也不要求选择本地项目路径。
 
 默认在选择云端仓库后，插件会隐藏并拒绝该会话中的本地文件、Shell、终端及其他非 GitHub 工具。AI 只能使用 `github_*` 工具（PTC 模式的 `run_code` 仅作为这些工具的调用载体）。因此仓库修改只能通过 GitHub API 发生，不会在本地工作区改完再上传。该限制在恢复历史会话时会自动恢复。
