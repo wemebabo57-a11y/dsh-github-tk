@@ -12,8 +12,7 @@
   "dsh": { "bundle": { "patch": "./cordis.patch.yml" } },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && node --test tests/*.test.mjs",
-    "prepack": "npm run build"
+    "test": "npm run build && node --test tests/*.test.mjs"
   },
   "dependencies": {
     "@deepseek-ai/schemastery": "^3.18.4"
