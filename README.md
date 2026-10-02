@@ -17,7 +17,7 @@ dsh plugin --profile web add github:wemebabo57-a11y/dsh-github-tk
 dsh plugin --profile desktop add github:wemebabo57-a11y/dsh-github-tk
 ```
 
-本仓库提交了已构建的 `dist/` 文件，也不声明安装生命周期脚本，因此 GitHub 安装不需要 pnpm 的 `allowBuilds` 授权。更新插件执行：
+本仓库提交了已构建的 `dist/` 文件，也不声明安装生命周期脚本或 DSH 的开发依赖，因此 GitHub 安装不需要 pnpm 的 `allowBuilds` 授权。更新插件执行：
 
 ```powershell
 dsh plugin --profile web update dsh-github-tk

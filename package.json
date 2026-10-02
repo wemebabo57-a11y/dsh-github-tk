@@ -25,11 +25,6 @@
     "@deepseek-ai/dsh-agent": "*"
   },
   "devDependencies": {
-    "@deepseek-ai/cordis": "*",
-    "@deepseek-ai/dsh-tools": "*",
-    "@deepseek-ai/dsh-credentials": "*",
-    "@deepseek-ai/dsh-commands": "*",
-    "@deepseek-ai/dsh-agent": "*",
     "@types/node": "^22.0.0",
     "typescript": "^5.9.3"
   },
