@@ -23,17 +23,7 @@ dsh plugin --profile desktop add github:wemebabo57-a11y/dsh-github-tk
 dsh plugin --profile web update dsh-github-tk
 ```
 
-## 图形使用
-
-安装后，在 DSH 的**设置 → GitHub**打开本插件专属设置页，填写并保存 GitHub Token。该页支持经典 PAT 与细粒度 PAT，令牌写入 DSH `credentials` 存储，页面不会再次显示令牌值。
-
-创建一个不选择本地 Workspace 的聊天会话。在聊天输入框左侧点击 **GitHub 仓库**，从当前 Token 可访问的仓库列表中选择一个仓库。选定后，该会话立刻成为云端项目，AI 通过 GitHub API 直接读取并提交文件；关联信息跨 DSH 重启保留。
-
-经典 PAT 通常需要 `repo` 权限；细粒度 PAT 应授权目标仓库的 Contents 读写权限。插件不会把 Token 传给 AI 工具结果。
-
-## 命令备用入口
-
-在没有加载 Web 图形界面的环境中，仍可使用以下命令：
+## 使用
 
 ```text
 /github-token <你的 GitHub PAT>
@@ -47,7 +37,7 @@ AI 可调用 `github_project`、`github_list_repositories`、`github_select_repo
 
 ## 界面范围
 
-云端仓库从聊天输入框内选择，项目不占用本地 Workspace。DSH 内置的 Workspace 菜单只接受现存本地目录，因此插件不会把 GitHub 仓库伪装成该菜单中的本地 Workspace。
+云端仓库通过命令选择，项目不占用本地 Workspace。DSH 内置的 Workspace 菜单只接受现存本地目录，因此插件不会把 GitHub 仓库伪装成该菜单中的本地 Workspace。
 
 ## 配置
 
