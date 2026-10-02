@@ -6,8 +6,9 @@ import { credentialRef } from '@deepseek-ai/dsh-credentials';
 import { defineTool } from '@deepseek-ai/dsh-tools';
 import { GitHubClient, parseRepository } from './github.js';
 import { ProjectStore } from './projects.js';
+import { GitHubCloudController } from './remote.js';
 export const name = 'github-cloud';
-export const inject = ['tools', 'credentials'];
+export const inject = ['tools', 'credentials', 'agents'];
 export const Config = z.object({
     statePath: z.string(),
     tokenRef: z.string().default('GITHUB_TOKEN'),
@@ -50,6 +51,10 @@ export function apply(ctx, config) {
             throw new Error('No cloud repository selected for this session. Run /github owner/repo in a new session.');
         return project;
     }
+    // This service supplies the graphical settings page and composer picker. It
+    // returns token state and repository metadata only; file bytes stay on the
+    // direct GitHub API tool path.
+    ctx.plugin(GitHubCloudController, { tokenRef: config.tokenRef ?? 'GITHUB_TOKEN', client, projects, lock: lockCloudAgent });
     function sessionId(agent) {
         if (!agent)
             throw new Error('GitHub cloud tools require an active session.');

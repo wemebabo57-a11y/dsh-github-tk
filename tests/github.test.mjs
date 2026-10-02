@@ -82,6 +82,7 @@ test('registers redacted token and cloud-project selection commands', async () =
     commands: { register: command => { commands.set(command.name, command); return () => {} } },
     tools: { register: tool => { tools.set(tool.name, tool); return () => {} } },
     systemPrompt: { section: () => () => {} },
+    plugin: () => () => {},
     inject: (_names, callback) => callback(ctx),
     on: (event, listener) => { listeners.set(event, listener); return () => {} },
   }

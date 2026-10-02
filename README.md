@@ -23,9 +23,17 @@ dsh plugin --profile desktop add github:wemebabo57-a11y/dsh-github-tk
 dsh plugin --profile web update dsh-github-tk
 ```
 
-## 使用
+## 图形使用
 
-在 DSH 中新建一个**不选择本地 Workspace**的会话，然后运行：
+安装后，在 DSH 的**设置 → GitHub**打开本插件专属设置页，填写并保存 GitHub Token。该页支持经典 PAT 与细粒度 PAT，令牌写入 DSH `credentials` 存储，页面不会再次显示令牌值。
+
+创建一个不选择本地 Workspace 的聊天会话。在聊天输入框左侧点击 **GitHub 仓库**，从当前 Token 可访问的仓库列表中选择一个仓库。选定后，该会话立刻成为云端项目，AI 通过 GitHub API 直接读取并提交文件；关联信息跨 DSH 重启保留。
+
+经典 PAT 通常需要 `repo` 权限；细粒度 PAT 应授权目标仓库的 Contents 读写权限。插件不会把 Token 传给 AI 工具结果。
+
+## 命令备用入口
+
+在没有加载 Web 图形界面的环境中，仍可使用以下命令：
 
 ```text
 /github-token <你的 GitHub PAT>
@@ -33,15 +41,13 @@ dsh plugin --profile web update dsh-github-tk
 /github owner/repo
 ```
 
-`/github owner/repo branch` 可指定分支。`/github create name private` 会在当前用户账号下新建私有仓库并选中；`public` 创建公开仓库。选定仓库后，在该会话里直接让 AI 查看或修改文件。关联信息跨 DSH 重启保留。其他会话仍使用各自选择的仓库。
-
-经典 PAT 和细粒度 PAT 都使用 GitHub 的 Bearer 认证。经典 PAT 通常需要 `repo` 权限；细粒度 PAT 应授权目标仓库的 Contents 读写权限。Token 通过 DSH `credentials` 服务保存，`/github-token` 的输入不写入命令事件；也可以在 DSH 凭据设置中配置 `GITHUB_TOKEN`。插件不会把 Token 传给 AI 工具结果。
+`/github owner/repo branch` 可指定分支。`/github create name private` 会在当前用户账号下新建私有仓库并选中；`public` 创建公开仓库。
 
 AI 可调用 `github_project`、`github_list_repositories`、`github_select_repository`、`github_create_repository`、`github_list_files`、`github_read_file`、`github_write_file`、`github_delete_file`。更新文件时先调用 `github_read_file` 获取 SHA，写入时带上 SHA；GitHub 发现冲突时会拒绝提交。删除同样要求当前 SHA。每次写入或删除都是 GitHub 上的真实提交，不会先改本地文件再上传。
 
-## 当前界面范围
+## 界面范围
 
-云端仓库通过 `/github list` 和 `/github owner/repo` 选择，项目不占用本地 Workspace。DSH 内置的 Workspace 菜单目前只接受现存本地目录，所以插件不会把 GitHub 仓库伪装成该菜单中的本地 Workspace。云端项目入口目前是会话命令，不是原生“新建项目”图形选择器。
+云端仓库从聊天输入框内选择，项目不占用本地 Workspace。DSH 内置的 Workspace 菜单只接受现存本地目录，因此插件不会把 GitHub 仓库伪装成该菜单中的本地 Workspace。
 
 ## 配置
 
